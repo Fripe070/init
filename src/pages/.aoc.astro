@@ -13,25 +13,29 @@ import Layout from "../layouts/layout.astro";
             >!
         </p>
         <p>We have a team which you can join via this code:</p>
-        <div class="border px-4 py-2 flex w-fit gap-4 items-center justify-between">
+        <div
+            class="border px-4 py-2 flex w-fit gap-4 items-center justify-between"
+        >
             <code>5258133-e44ddb97</code>
         </div>
     </section>
 </Layout>
 
 <div
-  id="snow-container"
-  class="motion-reduce:hidden fixed inset-0 -z-10 pointer-events-none select-none overflow-hidden"
+    id="snow-container"
+    class="motion-reduce:hidden fixed inset-0 -z-10 pointer-events-none select-none overflow-hidden"
 >
 </div>
 
 <template id="snowflake">
-  <span class="text-muted absolute top-0 left-0">#</span>
+    <span class="text-muted absolute top-0 left-0">#</span>
 </template>
 
 <script>
     const container = document.getElementById("snow-container")!;
-    const flakeTemplate = document.getElementById("snowflake") as HTMLTemplateElement;
+    const flakeTemplate = document.getElementById(
+        "snowflake",
+    ) as HTMLTemplateElement;
 
     function respawn(small: boolean) {
         container.innerHTML = "";
@@ -42,22 +46,24 @@ import Layout from "../layouts/layout.astro";
 
             element.style.left = `${Math.random() * 100}vw`;
             element.style.fontSize = `${Math.random() * 20 + 10}px`;
-            const rotation = (Math.random() -0.5) * 360;
+            const rotation = (Math.random() - 0.5) * 360;
             element.animate(
                 [
                     { transform: `translateY(-10vh) rotate(${rotation}deg)` },
-                    { transform: `translateY(110vh) rotate(${rotation * Math.random() * 2}deg)` },
+                    {
+                        transform: `translateY(110vh) rotate(${rotation * Math.random() * 2}deg)`,
+                    },
                 ],
                 {
                     duration: Math.random() * 5000 + 5000,
                     iterations: Infinity,
                     delay: Math.random() * -10000,
-                }
+                },
             );
         }
     }
 
-     // 40rem == tw "sm"
+    // 40rem == tw "sm"
     const smallMq = window.matchMedia("(width <= 40rem)");
     smallMq.addEventListener("change", (event) => respawn(event.matches));
     respawn(smallMq.matches);

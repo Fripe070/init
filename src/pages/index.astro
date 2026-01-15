@@ -14,15 +14,14 @@ import Layout from "../layouts/layout.astro";
             We develop and maintain a number of systems that make life easier
             for the IT Chapter.
         </p>
-        <div class="[&_button]:w-full md:[&_button]:w-fit flex-col md:flex-row flex gap-4">
+        <div
+            class="[&_button]:w-full md:[&_button]:w-fit flex-col md:flex-row flex gap-4"
+        >
             <a transition:name="join" href="/join">
                 <Button link>Join</Button>
             </a>
             <a transition:name="contact" href="/contact">
                 <Button variant="secondary" link>Contact</Button>
-            </a>
-            <a transition:name="aoc" class="flex px-12 h-10 py-2 items-center justify-center min-w-[166px] bg-green-600 text-white hover:opacity-80 transition-opacity" transition:name="contact" href="/aoc">
-               Advent of Code
             </a>
         </div>
     </section>

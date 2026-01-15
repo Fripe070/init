@@ -1,6 +1,17 @@
-<svg width="495" height="180" viewBox="0 0 495 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M45 90H90V0H135V180H90V135H0V0H45V90Z" fill="#D9D9D9"/>
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M315 180H180V0H315V180ZM225 135H270V45H225V135Z" fill="#D9D9D9"/>
-    <path d="M495 180H450V135H360V0H405V90H450V0H495V180Z" fill="#D9D9D9"/>
+<svg
+    width="495"
+    height="180"
+    viewBox="0 0 495 180"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <path d="M45 90H90V0H135V180H90V135H0V0H45V90Z" fill="#ffffff" />
+    <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M315 180H180V0H315V180ZM225 135H270V45H225V135Z"
+        fill="#ffffff"
+    />
+    <path d="M495 180H450V135H360V0H405V90H450V0H495V180Z" fill="#ffffff" />
     <title>404</title>
 </svg>
