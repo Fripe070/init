@@ -1,0 +1,35 @@
+---
+import type {
+    GetStaticPaths,
+    InferGetStaticParamsType,
+    InferGetStaticPropsType,
+} from "astro";
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/layout.astro";
+
+export const getStaticPaths = (async () => {
+  const paths = [];
+  for (const doc_type of ["protocols", "reports"] as const) {
+    for (const doc of await getCollection(doc_type)) {
+      paths.push({
+        params: { doc_key: doc.id },
+        props: { document: doc.data },
+      });
+    }
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { doc_key } = Astro.params as Params;
+//                   ^?
+const { document } = Astro.props as Props;
+//                      ^? { draft: boolean; title: string; }
+---
+
+
+<Layout>
+    {document.content}
+</Layout>

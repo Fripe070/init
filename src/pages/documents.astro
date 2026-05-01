@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/layout.astro";
+
+const protocols = await getCollection("protocols");
+const reports = await getCollection("reports");
+
+const documents = [
+  {
+    title: "protocols",
+    docs: protocols,
+  },
+  {
+    title: "reports",
+    docs: reports,
+  },
+] as const;
+---
+
+<Layout>
+    {documents.map(({title, docs}) => (
+        <div class="mb-4">
+            <h2 class="text-xl font-bold">{title}</h2>
+            <ul>
+                <li>
+                    {docs.map((doc) => (
+                        <a
+                            class="block underline underline-offset-3"
+                            href={`/documents/${doc.id}`}
+                        >
+                            {doc.id}
+                        </a>
+                    ))}
+                </li>
+            </ul>
+        </div>
+    ))}
+</Layout>
