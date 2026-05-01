@@ -1,0 +1,14 @@
+---
+import type { InitDocument } from '../documents';
+
+
+interface Props {
+  document: InitDocument;
+}
+
+const { document } = Astro.props;
+---
+
+<u class="px-1 py-0.5">
+  {document.id}
+</u>
