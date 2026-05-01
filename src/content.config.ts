@@ -2,9 +2,9 @@ import { defineCollection } from "astro:content";
 import { documentLoader, type Repository } from "./documents";
 
 const REPO: Repository = {
-  owner: process.env.GITHUB_OWNER || "Fripe070",
-  name: process.env.GITHUB_REPO || "documents",
-  branch: process.env.GITHUB_BRANCH || "feat/init-ial-migration",
+  owner: process.env.DOC_GITHUB_OWNER || "Fripe070",
+  name: process.env.DOC_GITHUB_REPO || "documents",
+  branch: process.env.DOC_GITHUB_BRANCH || "feat/init-ial-migration",
 };
 
 const protocols = defineCollection({
