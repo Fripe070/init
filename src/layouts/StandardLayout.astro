@@ -1,0 +1,11 @@
+---
+import HomeLogo from "../components/HomeLogo.astro";
+import BaseLayout from "./BaseLayout.astro";
+---
+
+<BaseLayout>
+    <main class="max-w-2xl w-full p-4 my-auto">
+        <HomeLogo />
+        <slot />
+    </main>
+</BaseLayout>

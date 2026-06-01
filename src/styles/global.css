@@ -7,9 +7,20 @@
   --color-muted: oklch(0.4525 0 0);
 }
 
+:root {
+  color-scheme: dark;
+}
 body {
   @apply font-mono;
   @apply bg-black text-primary;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/geist-mono.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* Ugly ahh workaround to prevent named elements from discretely transition instead of crossfading */
