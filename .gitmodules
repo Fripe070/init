@@ -1,0 +1,4 @@
+[submodule "init-documents"]
+	path = init-documents
+	url = https://github.com/initit/documents
+	branch = main
