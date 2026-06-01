@@ -12,6 +12,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# (unwanted) package lock files
+yarn.lock
+pnpm-lock.yaml
+bun.lock
 
 # environment variables
 .env
