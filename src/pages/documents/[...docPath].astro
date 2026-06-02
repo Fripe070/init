@@ -1,0 +1,40 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import DocumentList from "../../components/DocumentList.astro";
+import HomeLogo from "../../components/HomeLogo.astro";
+import typstDocuments from "../../documents";
+import Layout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = (async () => {
+  const paths = [];
+  for (const docs of Object.values(typstDocuments)) {
+    for (const doc of docs) {
+      paths.push({
+        params: { docPath: doc.path },
+        props: { document: doc },
+      });
+    }
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { document } = Astro.props as Props;
+---
+
+
+<Layout>
+  <div class="flex flex-row w-full h-dvh">
+    <div class="grow shrink flex overflow-y-auto overflow-x-hidden min-w-0 flex-row-reverse">
+      <div class="border-r h-full"></div>
+      <div class="my-auto p-8 grow shrink">
+        <HomeLogo />
+        <DocumentList currentDocPath={document.path} />
+      </div>
+    </div>
+    <div class="grow-0 w-full shrink-0 max-w-3xl p-4 overflow-y-auto">
+      <pre class="whitespace-pre-wrap">{document.content}</pre>
+    </div>
+  </div>
+</Layout>
