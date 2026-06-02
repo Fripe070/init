@@ -25,12 +25,13 @@ const { document } = Astro.props as Props;
 
 const compiler = await NodeCompiler.create({
   workspace: "init-documents",
+  fontArgs: [{ fontPaths: ["init-documents/assets/fonts"] }],
 });
-const compiled = compiler.svg({
-  mainFileContent: document.content,
+const compiledSvg = compiler.svg({
+  // Patched to not have pages
+  mainFileContent: `#set page(height: auto)\n${document.content}`,
 });
 ---
-
 
 <Layout>
   <div class="flex flex-row w-full h-dvh">
@@ -40,16 +41,16 @@ const compiled = compiler.svg({
         <DocumentList currentDocPath={document.path} />
       </div>
     </div>
-    <div class="grow-0 w-full shrink-0 max-w-4xl overflow-y-auto bg-white text-black">
-      <div class="typst-container" set:html={compiled}></div>
+    <div class="grow-0 w-full shrink-0 max-w-4xl overflow-y-auto bg-white text-black relative">
+      <div class="typst-render" set:html={compiledSvg}></div>
     </div>
   </div>
 </Layout>
 
 <style>
-  .typst-container > :global(.typst-doc) {
+  .typst-render > :global(.typst-doc) {
     color-scheme: light;
-    min-width: 800px;
+    min-width: var(--container-2xl);
     width: 100%;
     height: auto;
   }
