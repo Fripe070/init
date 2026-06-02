@@ -1,0 +1,41 @@
+---
+import typstDocuments from "../documents";
+
+const documents = [
+  {
+    title: "Protocols",
+    docs: typstDocuments.protocols,
+  },
+  {
+    title: "Reports",
+    docs: typstDocuments.reports,
+  },
+  {
+    title: "Statutes",
+    docs: typstDocuments.statutes,
+  },
+];
+
+interface Props {
+  currentDocPath?: string;
+}
+const { currentDocPath } = Astro.props as Props;
+---
+
+{documents.map(({ title, docs }) => (
+    <div class="mb-4">
+        <h2 class="text-xl">{title}</h2>
+        <ul>
+            <li>
+                {docs.toSorted((a, b) => a.path.localeCompare(b.path)).map((doc) => (
+                    <a
+                        class={`block w-fit underline underline-offset-2 ${currentDocPath === doc.path ? 'opacity-60' : 'hover:opacity-80'}`}
+                        href={`/documents/${doc.path}`}
+                    >
+                        {doc.path}
+                    </a>
+                ))}
+            </li>
+        </ul>
+    </div>
+))}
