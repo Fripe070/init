@@ -1,4 +1,5 @@
 ---
+import { NodeCompiler } from "@myriaddreamin/typst-ts-node-compiler";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import DocumentList from "../../components/DocumentList.astro";
 import HomeLogo from "../../components/HomeLogo.astro";
@@ -21,20 +22,35 @@ export const getStaticPaths = (async () => {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { document } = Astro.props as Props;
+
+const compiler = await NodeCompiler.create({
+  workspace: "init-documents",
+});
+const compiled = compiler.svg({
+  mainFileContent: document.content,
+});
 ---
 
 
 <Layout>
   <div class="flex flex-row w-full h-dvh">
-    <div class="grow shrink flex overflow-y-auto overflow-x-hidden min-w-0 flex-row-reverse">
-      <div class="border-r h-full"></div>
+    <div class="grow shrink flex overflow-y-auto overflow-x-hidden min-w-0">
       <div class="my-auto p-8 grow shrink">
         <HomeLogo />
         <DocumentList currentDocPath={document.path} />
       </div>
     </div>
-    <div class="grow-0 w-full shrink-0 max-w-3xl p-4 overflow-y-auto">
-      <pre class="whitespace-pre-wrap">{document.content}</pre>
+    <div class="grow-0 w-full shrink-0 max-w-4xl overflow-y-auto bg-white text-black">
+      <div class="typst-container" set:html={compiled}></div>
     </div>
   </div>
 </Layout>
+
+<style>
+  .typst-container > :global(.typst-doc) {
+    color-scheme: light;
+    min-width: 800px;
+    width: 100%;
+    height: auto;
+  }
+</style>
