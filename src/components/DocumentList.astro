@@ -32,7 +32,7 @@ const { currentDocPath } = Astro.props as Props;
           .map((doc) => (
             <a
               class={`block w-fit underline underline-offset-2 ${currentDocPath === doc.path ? "opacity-60" : "hover:opacity-80"}`}
-              href={`/documents/${doc.path.split(".").slice(0, -1).join(".")}`}
+              href={`/documents/${doc.path}`}
             >
               {doc.name}
             </a>

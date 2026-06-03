@@ -37,7 +37,9 @@ for (const documentDir of Object.keys(typstDocuments) as DocumentDir[]) {
     const displayPath = new URL(
       path.relative(DOCUMENT_ROOT, docPath),
       "file://",
-    ).pathname.slice(1); // Slice away leading slash
+    ).pathname
+      .replace(/^\//, "")
+      .replace(/\.typ$/, "");
 
     typstDocuments[documentDir].push({
       name: name,
