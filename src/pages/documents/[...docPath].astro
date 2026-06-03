@@ -9,10 +9,12 @@ import Layout from "../../layouts/BaseLayout.astro";
 export const getStaticPaths = (async () => {
   const paths = [];
   for (const docs of Object.values(typstDocuments)) {
-    for (const doc of docs) {
+    for (const document of docs) {
+      // Remove file extension
+      const docPath = document.path.split(".").slice(0, -1).join(".");
       paths.push({
-        params: { docPath: doc.path },
-        props: { document: doc },
+        params: { docPath: docPath },
+        props: { document: document },
       });
     }
   }
