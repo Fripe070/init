@@ -11,7 +11,7 @@ export const getStaticPaths = (async () => {
   for (const docs of Object.values(typstDocuments)) {
     for (const document of docs) {
       // Remove file extension
-      const docPath = document.path.split(".").slice(0, -1).join(".");
+      const docPath = document.path;
       paths.push({
         params: { docPath: docPath },
         props: { document: document },
