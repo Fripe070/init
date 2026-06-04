@@ -1,9 +1,8 @@
 ---
-import { NodeCompiler } from "@myriaddreamin/typst-ts-node-compiler";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import DocumentList from "../../components/DocumentList.astro";
 import HomeLogo from "../../components/HomeLogo.astro";
-import typstDocuments from "../../documents";
+import typstDocuments, { getCompiler } from "../../documents";
 import Layout from "../../layouts/BaseLayout.astro";
 
 export const getStaticPaths = (async () => {
@@ -25,10 +24,7 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { document } = Astro.props as Props;
 
-const compiler = await NodeCompiler.create({
-  workspace: "init-documents",
-  fontArgs: [{ fontPaths: ["init-documents/assets/fonts"] }],
-});
+const compiler = await getCompiler();
 const compiledSvg = compiler.svg({
   // Patched to not have pages
   mainFileContent: `#set page(height: auto)\n${document.content}`,
