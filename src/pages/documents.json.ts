@@ -8,7 +8,7 @@ export const GET = ((request) => {
     Object.entries(typstDocuments).map(([key, documents]) => [
       key,
       documents.map((entry) => ({
-        id: entry.path,
+        path: entry.path,
         name: entry.name,
         url: new URL(`/documents/${entry.path}`, request.url).href,
       })),
