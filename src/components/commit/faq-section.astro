@@ -1,0 +1,50 @@
+---
+import FaqLogo from "../../assets/commit/faq.svg";
+import FaqItem from "./faq-item.astro";
+
+const faqData = [
+  {
+    question: "What is a hackathon?",
+    answer:
+      "A chance to build an amazing computer science project! Apply your skills to create something you can call their own. Websites and mobile apps are common hacks, but you can build anything. We encourage you to think outside the box!",
+  },
+  {
+    question: "How much experience do I need to participate?",
+    answer:
+      "Zero computer science, coding, or hacking experience is needed! We encourage students of all skill levels to apply. We assume you have no experience and will help build your coding abilities from the ground up.",
+  },
+  {
+    question: "Do I need to attend both days of the hackathon?",
+    answer:
+      "No, you can attend either one or both days! However, only participants who participate during both days and submit a project before the deadline will be eligible for swag.",
+  },
+  {
+    question: "What is the cost of attending?",
+    answer: "The event is completely free of charge!",
+  },
+  {
+    question: "What should I bring?",
+    answer:
+      "Something to work on, like a laptop. Other good-to-haves include a charger, headphones, snacks, a water bottle, and a notebook.",
+  },
+  {
+    question: "I still have questions!",
+    answer:
+      'Please email us at <a href="mailto:init@kth.it" class="hover:underline underline-offset-4">init@kth.it</a> if you have any further questions.',
+  },
+];
+---
+
+<section
+    class="mx-auto my-20 max-w-3xl px-4"
+    aria-labelledby="faq-heading"
+>
+    <FaqLogo class="mx-auto mb-4 max-h-7 w-auto" />
+    <ul class="list-none">
+        {faqData.map((faq) => (
+            <li>
+                <FaqItem {...faq} />
+            </li>
+        ))}
+    </ul>
+</section>

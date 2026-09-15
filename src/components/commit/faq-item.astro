@@ -1,0 +1,52 @@
+---
+import Arrow from "../../assets/arrow.svg";
+
+const { question, answer } = Astro.props;
+---
+
+<details class="faq-item">
+    <summary class="faq-summary">
+        <span class="faq-question">{question}</span>
+        <Arrow
+            class="faq-chevron"
+            width="20"
+            height="20"
+            aria-hidden="true"
+        />
+    </summary>
+
+    <p class="faq-answer" set:html={answer}></p>
+</details>
+
+<style>
+    .faq-item {
+        padding: 0.5rem 0;
+    }
+
+    .faq-summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        cursor: pointer;
+        list-style: none;
+        user-select: none;
+        color: inherit;
+        font-weight: 600;
+    }
+
+    .faq-question {
+        flex: 1;
+        overflow-wrap: anywhere;
+    }
+
+    .faq-item[open] .faq-chevron {
+        transform: rotate(180deg);
+    }
+
+    .faq-answer {
+        margin: 0.75rem 0 0;
+        color: inherit;
+    }
+
+</style>

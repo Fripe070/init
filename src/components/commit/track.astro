@@ -1,0 +1,29 @@
+---
+import Button from "../button.astro";
+
+export interface Props {
+  id: string;
+  title: string;
+  description: string;
+}
+
+const { id, title, description } = Astro.props;
+---
+
+<div 
+    class="relative min-w-0 cursor-pointer" 
+    onclick={`document.getElementById('${id}').showModal();`}
+>
+    <slot />
+    <div class="absolute inset-0 bg-black/80 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
+        <span class="text-xl font-bold text-center">{title}</span>
+    </div>
+</div>
+
+<dialog id={id} class="bg-black text-white backdrop:bg-black/80 border p-8 max-w-md w-full m-auto">
+    <h3 class="text-xl font-bold mb-4">{title}</h3>
+    <p class="mb-6">{description}</p>
+    <form method="dialog" class="flex justify-end">
+        <Button variant="secondary" link>Close</Button>
+    </form>
+</dialog>

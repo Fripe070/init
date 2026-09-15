@@ -1,0 +1,130 @@
+---
+import ScheduleLogo from "../../assets/commit/schedule.svg";
+
+interface Entry {
+  time: string;
+  activity: string;
+}
+
+interface Day {
+  title: string;
+  entries: Entry[];
+}
+
+export interface Props {
+  days?: Day[];
+}
+
+const defaultDays: Day[] = [
+  {
+    title: "September 19",
+    entries: [
+      { time: "10:00", activity: "Doors open" },
+      { time: "10:30-11:00", activity: "Opening ceremony" },
+      { time: "11:00-13:00", activity: "Start hacking!" },
+      { time: "13:00-14:00", activity: "Lunch" },
+      { time: "14:00-19:00", activity: "Dev phase I" },
+      { time: "19:00-20:00", activity: "Dinner" },
+      { time: "20:00-22:00", activity: "Dev phase II" },
+      { time: "22:00-00:00", activity: "Open dev phase / Rest" },
+    ],
+  },
+  {
+    title: "September 20",
+    entries: [
+      { time: "00:00-10:00", activity: "Open dev phase / Rest" },
+      { time: "10:00", activity: "Doors open" },
+      { time: "10:00-12:00", activity: "Final dev phase (testing)" },
+      { time: "12:00", activity: "Submission deadline" },
+      { time: "12:00-15:00", activity: "Presentations & judging" },
+      { time: "15:00-16:00", activity: "Awards" },
+      { time: "16:00-17:00", activity: "Closing ceremony" },
+      { time: "17:00-late", activity: "Afterparty!!!" },
+    ],
+  },
+];
+
+const { days = defaultDays } = Astro.props;
+---
+
+<section class="mt-20" data-schedule>
+    <ScheduleLogo class="w-auto max-h-7 flex mx-auto mb-4" />
+
+    <div class="flex flex-col md:flex-row gap-4 mb-4">
+        {
+            days.map((day, index) => (
+                <button
+                    type="button"
+                    data-schedule-tab={index}
+                    aria-expanded={index === 0 ? "true" : "false"}
+                    class="flex-1 min-h-10 px-8 py-2 flex items-center justify-center cursor-pointer border border-primary transition-opacity hover:opacity-80 aria-expanded:bg-primary aria-expanded:text-black"
+                >
+                    {day.title}
+                </button>
+            ))
+        }
+    </div>
+
+    {
+        days.map((day, index) => (
+            <div
+                data-schedule-panel={index}
+                hidden={index !== 0}
+                class="border border-primary p-5"
+            >
+                <ul class="space-y-1">
+                    {day.entries.map((entry) => (
+                        <li class="flex items-center gap-4">
+                            <span class="tabular-nums w-[11ch] shrink-0">
+                                {entry.time}
+                            </span>
+                            <span
+                                class="grow border-b border-muted hidden sm:block"
+                                aria-hidden="true"
+                            />
+                            <span>{entry.activity}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        ))
+    }
+</section>
+
+<script>
+    function setupSchedules() {
+        for (const schedule of document.querySelectorAll<HTMLElement>(
+            "[data-schedule]",
+        )) {
+            if (schedule.dataset.scheduleInit) continue;
+            schedule.dataset.scheduleInit = "true";
+
+            const tabs = schedule.querySelectorAll<HTMLButtonElement>(
+                "[data-schedule-tab]",
+            );
+            const panels = schedule.querySelectorAll<HTMLElement>(
+                "[data-schedule-panel]",
+            );
+
+            for (const tab of tabs) {
+                tab.addEventListener("click", () => {
+                    const selected = tab.dataset.scheduleTab;
+
+                    for (const other of tabs) {
+                        other.setAttribute(
+                            "aria-expanded",
+                            String(other.dataset.scheduleTab === selected),
+                        );
+                    }
+
+                    for (const panel of panels) {
+                        panel.hidden = panel.dataset.schedulePanel !== selected;
+                    }
+                });
+            }
+        }
+    }
+
+    setupSchedules();
+    document.addEventListener("astro:page-load", setupSchedules);
+</script>
