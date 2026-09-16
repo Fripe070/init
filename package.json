@@ -9,13 +9,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^6.6.5",
+    "@astrojs/netlify": "^8.2.5",
     "@myriaddreamin/typst-ts-node-compiler": "^0.7.0",
-    "@tailwindcss/vite": "^4.3.0",
-    "astro": "^5.18.2",
-    "tailwindcss": "^4.3.0"
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.2",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.2"
+    "@biomejs/biome": "2.5.14"
   }
 }
