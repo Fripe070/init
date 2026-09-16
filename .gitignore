@@ -1,3 +1,5 @@
+init-documents/
+
 # build output
 dist/
 # generated types
