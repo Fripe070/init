@@ -34,7 +34,7 @@ const compiledSvg = compiler.svg({
 <Layout>
   <div class="flex flex-row w-full h-dvh">
     <div class="grow shrink flex overflow-y-auto overflow-x-hidden min-w-0">
-      <div class="my-auto p-8 grow shrink">
+      <div class="my-auto p-8">
         <HomeLogo />
         <DocumentList currentDocPath={document.path} />
       </div>
@@ -48,7 +48,6 @@ const compiledSvg = compiler.svg({
 <style>
   .typst-render > :global(.typst-doc) {
     color-scheme: light;
-    min-width: var(--container-2xl);
     width: 100%;
     height: auto;
   }
