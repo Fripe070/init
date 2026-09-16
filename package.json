@@ -6,7 +6,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postinstall": "node scripts/fetch_docs.mjs",
+    "documents:fetch": "node scripts/fetch_docs.mjs",
+    "documents:update": "git -C init-documents pull"
   },
   "dependencies": {
     "@astrojs/netlify": "^8.2.5",
