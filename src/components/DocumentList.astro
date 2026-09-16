@@ -23,8 +23,8 @@ const { currentDocPath } = Astro.props as Props;
 ---
 
 {documents.map(({ title, docs }) => (
-  <div class="mb-4">
-    <h2 class="text-xl">{title}</h2>
+  <div class="not-last:mb-4">
+    <h2 class="text-lg font-bold">{title}</h2>
     <ul>
       <li>
         {docs
