@@ -44,13 +44,13 @@ const description = details ? `${details} - init document` : "init document";
 
 <Layout title={title} description={description}>
   <div class="flex flex-row w-full max-w-7xl h-dvh">
-    <div class="grow shrink flex overflow-y-auto overflow-x-hidden min-w-0">
+    <div class="hidden lg:flex shrink-0 grow overflow-y-auto overflow-x-hidden min-w-0">
       <div class="my-auto p-8">
         <HomeLogo />
         <DocumentList currentDocPath={document.path} />
       </div>
     </div>
-    <div class="grow-0 w-full shrink-0 max-w-4xl overflow-y-auto bg-white text-black relative">
+    <div class="w-full lg:max-w-4xl overflow-y-auto bg-white text-black relative">
       <div class="typst-render">
         <template shadowrootmode="open">
           <style>
