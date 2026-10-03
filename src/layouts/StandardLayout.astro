@@ -1,9 +1,13 @@
 ---
+import type { ComponentProps } from "astro/types";
 import HomeLogo from "../components/HomeLogo.astro";
 import BaseLayout from "./BaseLayout.astro";
+
+type Props = ComponentProps<typeof BaseLayout>;
+const props = Astro.props;
 ---
 
-<BaseLayout>
+<BaseLayout {...props}>
     <main class="max-w-2xl w-full p-4 my-auto">
         <HomeLogo />
         <slot />

@@ -29,9 +29,20 @@ const compiledSvg = compiler.svg({
   // Patched to not have pages
   mainFileContent: `#set page(height: auto)\n${document.content}`,
 });
+
+const title = document.metadata.title || document.name;
+const category = document.path.split("/")[0];
+const categoryTitle = category.charAt(0).toUpperCase() + category.slice(1);
+
+const details = [
+  categoryTitle,
+  document.metadata.date?.toISOString().split("T")[0],
+  document.metadata.location,
+].filter(Boolean).join(" / ");
+const description = details ? `${details} - init document` : "init document";
 ---
 
-<Layout>
+<Layout title={title} description={description}>
   <div class="flex flex-row w-full h-dvh">
     <div class="grow shrink flex overflow-y-auto overflow-x-hidden min-w-0">
       <div class="my-auto p-8">
