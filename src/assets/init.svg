@@ -1,13 +1,18 @@
-<svg viewBox="0 0 10 4" width="10" height="4" fill="white" version="1.1" xmlns="http://www.w3.org/2000/svg">
-  <title>init</title>
+<svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  viewBox="0 0 10 4" 
+  fill="#ffffff" 
+  role="img" 
+  aria-label="init"
+>
   <!-- i -->
-  <path d="m0 2h1v2h-1z"/>
-  <path d="m0 0h1v1h-1z"/>
+  <path d="M0 2h1v2H0z"/>
+  <path d="M0 0h1v1H0z"/>
   <!-- n -->
-  <path d="m2 1h2v1h1v2h-1v-2h-1v2h-1z" />
+  <path d="M2 1h2v1h1v2H4V2H3v2H2z"/>
   <!-- i -->
-  <path d="m6 2h1v2h-1z"/>
-  <path d="m6 0h1v1h-1z"/>
+  <path d="M6 2h1v2H6z"/>
+  <path d="M6 0h1v1H6z"/>
   <!-- t -->
-  <path d="m8 0v4h2v-1h-1v-1h1v-1h-1v-1z"/>
+  <path d="M8 0v4h2V3H9V2h1V1H9V0z"/>
 </svg>
