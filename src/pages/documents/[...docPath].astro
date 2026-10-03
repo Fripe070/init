@@ -55,7 +55,7 @@ const description = details ? `${details} - init document` : "init document";
         <a href={`/documents/${document.path}.pdf`} target="_self" class="underline underline-offset-2">.PDF</a>
         <a href={`/documents/${document.path}.typ`} target="_self" class="underline underline-offset-2">.TYP</a>
       </div>
-      <div class="typst-render">
+      <main class="typst-render">
         <template shadowrootmode="open">
           <style>
             .typst-doc {
@@ -66,7 +66,7 @@ const description = details ? `${details} - init document` : "init document";
           </style>
           <div set:html={compiledSvg} />
         </template>
-      </div>
+      </main>
     </div>
   </div>
 </Layout>
