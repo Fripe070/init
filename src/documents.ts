@@ -33,10 +33,6 @@ async function queryDocument(
       { mainFileContent: content },
       { selector: selector, field: field },
     );
-    console.log(
-      `Query result for selector "${selector}"${field ? ` and field "${field}"` : ""}:`,
-      result,
-    );
     return result;
   } catch (error) {
     console.error(
