@@ -27,18 +27,18 @@ const { currentDocPath } = Astro.props as Props;
     <div class="not-last:mb-4">
       <h2 class="text-lg font-bold">{title}</h2>
       <ul>
-        <li>
-          {docs
-            .toSorted((a, b) => a.path.localeCompare(b.path))
-            .map((doc) => (
+        {docs
+          .toSorted((a, b) => a.path.localeCompare(b.path))
+          .map((doc) => (
+            <li>
               <a
                 class={`block w-fit underline underline-offset-2 ${currentDocPath === doc.path ? "opacity-60" : "hover:opacity-80"}`}
                 href={`/documents/${doc.path}`}
               >
                 {doc.name}
               </a>
-            ))}
-        </li>
+            </li>
+          ))}
       </ul>
     </div>
   ))}
