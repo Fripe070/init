@@ -51,6 +51,10 @@ const description = details ? `${details} - init document` : "init document";
       </div>
     </div>
     <div class="w-full lg:max-w-4xl overflow-y-auto bg-white text-black relative">
+      <div class="flex justify-end gap-3 px-3 py-2 text-sm">
+        <a href={`/documents/${document.path}.pdf`} target="_self" class="underline underline-offset-1">.PDF</a>
+        <a href={`/documents/${document.path}.typ`} target="_self" class="underline underline-offset-1">.TYP</a>
+      </div>
       <div class="typst-render">
         <template shadowrootmode="open">
           <style>
