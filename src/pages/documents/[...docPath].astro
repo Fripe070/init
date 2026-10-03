@@ -40,15 +40,18 @@ const compiledSvg = compiler.svg({
       </div>
     </div>
     <div class="grow-0 w-full shrink-0 max-w-4xl overflow-y-auto bg-white text-black relative">
-      <div class="typst-render" set:html={compiledSvg}></div>
+      <div class="typst-render">
+        <template shadowrootmode="open">
+          <style>
+            .typst-doc {
+              color-scheme: light;
+              width: 100%;
+              height: auto;
+            }
+          </style>
+          <div set:html={compiledSvg} />
+        </template>
+      </div>
     </div>
   </div>
 </Layout>
-
-<style>
-  .typst-render > :global(.typst-doc) {
-    color-scheme: light;
-    width: 100%;
-    height: auto;
-  }
-</style>
