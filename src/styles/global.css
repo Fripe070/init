@@ -1,54 +1,54 @@
 @import "tailwindcss";
 
 @theme {
-  --font-mono: "Geist Mono", monospace;
+    --font-mono: "Geist Mono", monospace;
 
-  --color-primary: oklch(1 0 0);
-  --color-muted: oklch(0.4525 0 0);
+    --color-primary: oklch(1 0 0);
+    --color-muted: oklch(0.4525 0 0);
 }
 
 body {
-  @apply font-mono;
-  @apply bg-black text-primary;
+    @apply font-mono;
+    @apply text-primary bg-black;
 }
 
 /* Ugly ahh workaround to prevent named elements from discretely transition instead of crossfading */
 ::view-transition-old(*) {
-  animation: astroFadeOut 0.21s ease both;
+    animation: astroFadeOut 0.21s ease both;
 }
 
 ::view-transition-new(*) {
-  animation: astroFadeIn 0.21s ease both;
+    animation: astroFadeIn 0.21s ease both;
 }
 
 @keyframes astroFadeInOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }
 
 @keyframes astroFadeIn {
-  from {
-    opacity: 0;
-    mix-blend-mode: plus-lighter;
-  }
-  to {
-    opacity: 1;
-    mix-blend-mode: plus-lighter;
-  }
+    from {
+        opacity: 0;
+        mix-blend-mode: plus-lighter;
+    }
+    to {
+        opacity: 1;
+        mix-blend-mode: plus-lighter;
+    }
 }
 
 @keyframes astroFadeOut {
-  from {
-    opacity: 1;
-    mix-blend-mode: plus-lighter;
-  }
-  to {
-    opacity: 0;
-    mix-blend-mode: plus-lighter;
-  }
+    from {
+        opacity: 1;
+        mix-blend-mode: plus-lighter;
+    }
+    to {
+        opacity: 0;
+        mix-blend-mode: plus-lighter;
+    }
 }
 /* End of workaround */

@@ -1,24 +1,23 @@
 ---
 interface Props {
-  variant?: ButtonVariant;
-  link: boolean;
-  className?: string;
+    variant?: ButtonVariant;
+    link: boolean;
+    className?: string;
 }
 
 type ButtonVariant = keyof typeof buttonVariants;
 
-const baseButton =
-  "flex px-12 h-10 py-2 items-center justify-center min-w-[166px]";
+const baseButton = "flex px-12 h-10 py-2 items-center justify-center min-w-[166px]";
 
 const buttonVariants = {
-  primary: "bg-primary text-black hover:opacity-80 transition-opacity",
-  secondary:
-    "border border-primary text-primary hover:opacity-80 transition-opacity",
+    primary: "bg-primary text-black hover:opacity-80 transition-opacity",
+    secondary: "border border-primary text-primary hover:opacity-80 transition-opacity",
 };
 
-const { variant = "primary", link = false, className } = Astro.props;
+const { variant = "primary", link = false, className = "" } = Astro.props;
 
-const buttonClass = `${baseButton} ${buttonVariants[variant]} ${link ? "cursor-pointer" : ""}`;
+const buttonClass =
+    `${baseButton} ${buttonVariants[variant]} ${link ? "cursor-pointer" : ""} ${className}`.trim();
 ---
 
 <button class={buttonClass}>
