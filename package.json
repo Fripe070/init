@@ -9,7 +9,7 @@
     "astro": "astro",
     "postinstall": "node scripts/fetch_docs.mjs",
     "documents:fetch": "node scripts/fetch_docs.mjs",
-    "documents:update": "git -C init-documents pull"
+    "documents:update": "node scripts/fetch_docs.mjs --force"
   },
   "dependencies": {
     "@astrojs/netlify": "^8.2.7",
