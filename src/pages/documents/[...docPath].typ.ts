@@ -17,7 +17,7 @@ export const getStaticPaths = (async () => {
 export const GET = (({ props }) => {
   return new Response(props.document.content, {
     headers: {
-      "Content-Type": "text/plain",
+      "Content-Type": "text/plain; charset=utf-8",
     },
   });
 }) satisfies APIRoute;
