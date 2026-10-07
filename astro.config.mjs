@@ -4,14 +4,19 @@ import { defineConfig } from "astro/config";
 
 import netlify from "@astrojs/netlify";
 
+function getSiteUrl() {
+  if (process.env.CONTEXT === "deploy-preview")
+    return process.env.DEPLOY_PRIME_URL;
+
+  if (process.env.CONTEXT === "production" || process.env.CI === "true")
+    return "https://init.kth.it";
+
+  return process.env.SITE_URL || "http://localhost:4321";
+}
+
 // https://astro.build/config
 export default defineConfig({
-  site:
-    process.env.DEPLOY_PRIME_URL ||
-    process.env.URL ||
-    (process.env.CI === "true"
-      ? "https://init.kth.it"
-      : "http://localhost:4321"),
+  site: getSiteUrl(),
 
   vite: {
     plugins: [tailwindcss()],
