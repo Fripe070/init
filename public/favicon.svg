@@ -1,5 +1,24 @@
-<svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 34V26H10V34V42H18V34Z" fill="white"/>
-    <path d="M18 10H10V18H18V10Z" fill="white"/>
-    <path d="M34 18V10H26V18V26V34V42H34H42V34H34V26H42V18H34Z" fill="white"/>
+<svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  viewBox="0 0 6 6" 
+  role="img" 
+  aria-label="init"
+>
+  <style>
+    .init-favicon {
+      fill: #000000;
+    }
+    @media (prefers-color-scheme: dark) {
+      .init-favicon {
+        fill: #ffffff;
+      }
+    }
+  </style>
+  <g class="init-favicon">
+    <!-- i -->
+    <path d="M1 3h1v2H1z"/>
+    <path d="M1 1h1v1H1z"/>
+    <!-- t -->
+    <path d="M3 1h1v1h1v1H4v1h1v1H3z"/>
+  </g>
 </svg>

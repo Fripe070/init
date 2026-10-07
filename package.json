@@ -6,15 +6,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postinstall": "node scripts/fetch_docs.mjs",
+    "documents:fetch": "node scripts/fetch_docs.mjs",
+    "documents:update": "node scripts/fetch_docs.mjs --force"
   },
   "dependencies": {
-    "@astrojs/netlify": "^6.6.0",
-    "@tailwindcss/vite": "^4.1.16",
-    "astro": "^5.15.1",
-    "tailwindcss": "^4.1.16"
+    "@astrojs/netlify": "^8.2.6",
+    "@myriaddreamin/typst-ts-node-compiler": "^0.7.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.5",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.2"
+    "@biomejs/biome": "2.5.14"
   }
 }

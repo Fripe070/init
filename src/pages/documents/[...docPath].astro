@@ -1,0 +1,72 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import DocumentList from "../../components/DocumentList.astro";
+import HomeLogo from "../../components/HomeLogo.astro";
+import typstDocuments, { getCompiler } from "../../documents";
+import Layout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = (async () => {
+  const paths = [];
+  for (const docs of Object.values(typstDocuments)) {
+    for (const document of docs) {
+      // Remove file extension
+      const docPath = document.path;
+      paths.push({
+        params: { docPath: docPath },
+        props: { document: document },
+      });
+    }
+  }
+  return paths;
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { document } = Astro.props as Props;
+
+const compiler = await getCompiler();
+const compiledSvg = compiler.svg({
+  // Patched to not have pages
+  mainFileContent: `#set page(height: auto)\n${document.content}`,
+});
+
+const title = document.metadata.title || document.name;
+const category = document.path.split("/")[0];
+const categoryTitle = category.charAt(0).toUpperCase() + category.slice(1);
+
+const details = [
+  categoryTitle,
+  document.metadata.date?.toISOString().split("T")[0],
+  document.metadata.location,
+].filter(Boolean).join(" / ");
+const description = details ? `${details} - init document` : "init document";
+---
+
+<Layout title={title} description={description}>
+  <div class="flex flex-row w-full max-w-7xl h-dvh">
+    <div class="hidden lg:flex shrink-0 grow overflow-y-auto overflow-x-hidden min-w-0">
+      <nav class="my-auto p-8">
+        <HomeLogo />
+        <DocumentList currentDocPath={document.path} />
+      </nav>
+    </div>
+    <div class="w-full lg:max-w-4xl overflow-y-auto bg-white text-black relative">
+      <div class="flex justify-end gap-3 px-3 py-2 text-sm">
+        <a href={`/documents/${document.path}.pdf`} target="_self" class="underline underline-offset-2">.PDF</a>
+        <a href={`/documents/${document.path}.typ`} target="_self" class="underline underline-offset-2">.TYP</a>
+      </div>
+      <main class="typst-render">
+        <template shadowrootmode="open">
+          <style>
+            .typst-doc {
+              color-scheme: light;
+              width: 100%;
+              height: auto;
+            }
+          </style>
+          <div set:html={compiledSvg} />
+        </template>
+      </main>
+    </div>
+  </div>
+</Layout>
