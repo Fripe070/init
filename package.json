@@ -7,16 +7,20 @@
         "build": "astro build",
         "preview": "astro preview",
         "astro": "astro",
+        "postinstall": "node scripts/fetch_docs.mjs",
+        "documents:fetch": "node scripts/fetch_docs.mjs",
+        "documents:update": "node scripts/fetch_docs.mjs --force",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix"
     },
     "dependencies": {
-        "@astrojs/netlify": "^6.6.0",
-        "@tailwindcss/vite": "^4.1.16",
-        "astro": "^5.15.1",
-        "tailwindcss": "^4.1.16"
+        "@astrojs/netlify": "^8.2.6",
+        "@myriaddreamin/typst-ts-node-compiler": "^0.7.0",
+        "@tailwindcss/vite": "^4.3.3",
+        "astro": "^7.3.5",
+        "tailwindcss": "^4.3.3"
     },
     "devDependencies": {
         "eslint": "^10.12.0",

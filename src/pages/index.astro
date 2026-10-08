@@ -1,18 +1,22 @@
 ---
-import "../styles/global.css";
 import Button from "../components/button.astro";
-import Layout from "../layouts/layout.astro";
+import Layout from "../layouts/StandardLayout.astro";
+import "../styles/global.css";
 ---
 
 <Layout>
-    <section class="space-y-4">
+    <section class="space-y-4 text-pretty">
         <p>
-            We are <b>init</b>, the systems development group at the IT Chapter @ KTH.
+            We are <b>init</b>, the systems development group at the{" "}
+            <a href="https://kth.it" class="whitespace-nowrap hover:underline underline-offset-4">
+                IT Chapter @ KTH
+            </a>
+            .
         </p>
         <p class="mb-8">
             We develop and maintain a number of systems that make life easier for the IT Chapter.
         </p>
-        <div class="[&_button]:w-full md:[&_button]:w-fit flex-col md:flex-row flex gap-4">
+        <nav class="[&_button]:w-full md:[&_button]:w-fit flex flex-col md:flex-row gap-4">
             <a transition:name="join" href="/join">
                 <Button link>Join</Button>
             </a>
@@ -21,6 +25,11 @@ import Layout from "../layouts/layout.astro";
                     Contact
                 </Button>
             </a>
-        </div>
+            <a transition:name="documents" href="/documents">
+                <Button variant="secondary" link>
+                    Documents
+                </Button>
+            </a>
+        </nav>
     </section>
 </Layout>
