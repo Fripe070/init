@@ -1,10 +1,10 @@
 import { NodeCompiler } from "@myriaddreamin/typst-ts-node-compiler";
 import path from "node:path";
 
+const DOCUMENT_ROOT = "/init-documents/" as const;
 const importedDocs = import.meta.glob("/init-documents/**/*.typ", {
   query: "?raw",
 });
-const DOCUMENT_ROOT = "/init-documents/" as const; // unfortunately can't use above
 
 export interface DocumentMetadata {
   title?: string;
@@ -85,7 +85,7 @@ for (const documentDir of Object.keys(typstDocuments) as DocumentDir[]) {
     path.matchesGlob(p, path.join(DOCUMENT_ROOT, documentDir, "**/*.typ")),
   );
   for (const docPath of matching) {
-    const docModule = (await importedDocs[docPath]()) as { default: string };
+    const docModule = (await importedDocs[docPath]()) as unknown as { default: string };
 
     const docMetadata = await extractMetadata(docModule.default);
 
@@ -122,6 +122,19 @@ if (import.meta.env.DEV) {
   if (uniquePaths.size !== allDocs.length) {
     throw new Error("Document paths are not unique");
   }
+}
+
+export function getDocumentUrl(
+  doc: string | Pick<DocumentEntry, "path">,
+  options?: {
+    base?: string | URL;
+    extension?: "pdf" | "typ";
+  },
+): string {
+  const docPath = typeof doc === "string" ? doc : doc.path;
+  const ext = options?.extension ? `.${options.extension}` : "";
+  const path = `/documents/${docPath}${ext}`;
+  return options?.base ? new URL(path, options.base).href : path;
 }
 
 export default typstDocuments;
