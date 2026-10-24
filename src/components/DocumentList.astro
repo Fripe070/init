@@ -1,20 +1,28 @@
 ---
-import typstDocuments, { getDocumentUrl } from "../documents";
+import FeedIcon from "../assets/feed.svg";
+import { feeds } from "../feeds";
+import typstDocuments, { getDocumentUrl, type DocumentEntry } from "../documents";
 
 const documents = [
   {
     title: "Protocols",
+    feed: feeds.protocols.path,
     docs: typstDocuments.protocols,
   },
   {
     title: "Reports",
+    feed: feeds.reports.path,
     docs: typstDocuments.reports,
   },
   {
     title: "Statutes",
     docs: typstDocuments.statutes,
   },
-];
+] satisfies {
+  title: string;
+  feed?: string;
+  docs: DocumentEntry[];
+}[];
 
 interface Props {
   currentDocPath?: string;
@@ -23,9 +31,21 @@ const { currentDocPath } = Astro.props as Props;
 ---
 
 <div transition:name="documents-list" class="w-fit">
-  {documents.map(({ title, docs }) => (
+  {documents.map(({ title, docs, feed }) => (
     <div class="not-last:mb-4">
-      <h2 class="text-lg font-bold">{title}</h2>
+      <h2 class="flex items-center gap-2 text-lg font-bold">
+        {title}
+        {feed && (
+          <a
+            href={feed}
+            title={`${title} RSS feed`}
+            aria-label={`${title} RSS feed`}
+            class="text-muted hover:text-primary transition-colors"
+          >
+            <FeedIcon class="size-3.5" />
+          </a>
+        )}
+      </h2>
       <ul>
         {docs
           .toSorted((a, b) => a.path.localeCompare(b.path))
@@ -42,5 +62,11 @@ const { currentDocPath } = Astro.props as Props;
       </ul>
     </div>
   ))}
+  <a
+    href={feeds.all.path}
+    class="mt-4 flex w-fit items-center gap-2 text-sm font-bold text-muted hover:text-primary transition-colors"
+  >
+    <FeedIcon class="size-3" />
+    All documents
+  </a>
 </div>
-
